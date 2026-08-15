@@ -24,7 +24,7 @@
     </form>
 
     {{-- 検索ワード --}}
-    @if ($keyword !== '')
+    @if (filled($keyword))
     <p class="user-search-keyword">
       検索ワード：{{ $keyword }}
     </p>
@@ -45,7 +45,9 @@
       {{-- ユーザーアイコン --}}
       <div class="user-search-icon">
         <img
-          src="{{ asset('images/' . $user->icon_image) }}"
+          src="{{ Str::startsWith($user->icon_image, 'icons/')
+      ? asset('storage/' . $user->icon_image)
+      : asset('images/' . $user->icon_image) }}"
           alt="{{ $user->username }}のアイコン">
       </div>
 

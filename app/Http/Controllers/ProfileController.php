@@ -44,6 +44,7 @@ class ProfileController extends Controller
 
             'new_password' => [
                 'nullable',
+                'required_with:new_password_confirmation',
                 'regex:/^[a-zA-Z0-9]+$/',
                 'min:8',
                 'max:20',
@@ -52,6 +53,7 @@ class ProfileController extends Controller
 
             'new_password_confirmation' => [
                 'nullable',
+                'required_with:new_password',
                 'regex:/^[a-zA-Z0-9]+$/',
                 'min:8',
                 'max:20',
@@ -79,11 +81,13 @@ class ProfileController extends Controller
             'email.max' => 'メールアドレスは40文字以内で入力してください。',
             'email.unique' => 'このメールアドレスはすでに登録されています。',
 
+            'new_password.required_with' => '確認用パスワードを入力した場合は、パスワードも入力してください。',
             'new_password.regex' => 'パスワードは半角英数字のみで入力してください。',
             'new_password.min' => 'パスワードは8文字以上で入力してください。',
             'new_password.max' => 'パスワードは20文字以内で入力してください。',
             'new_password.confirmed' => 'パスワード確認欄と一致していません。',
 
+            'new_password_confirmation.required_with' => 'パスワードを入力した場合は、確認用パスワードも入力してください。',
             'new_password_confirmation.regex' => '確認用パスワードは半角英数字のみで入力してください。',
             'new_password_confirmation.min' => '確認用パスワードは8文字以上で入力してください。',
             'new_password_confirmation.max' => '確認用パスワードは20文字以内で入力してください。',
@@ -109,7 +113,7 @@ class ProfileController extends Controller
         $user->save();
 
         return redirect()
-            ->route('profile.edit')
+            ->route('top')
             ->with('success', 'プロフィールを更新しました。');
     }
 }

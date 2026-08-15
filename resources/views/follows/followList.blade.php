@@ -22,7 +22,9 @@
           aria-label="{{ $user->username }}のプロフィールを見る">
           {{-- ユーザーアイコン --}}
           <img
-            src="{{ asset('images/' . $user->icon_image) }}"
+            src="{{ Str::startsWith($user->icon_image, 'icons/')
+      ? asset('storage/' . $user->icon_image)
+      : asset('images/' . $user->icon_image) }}"
             alt="{{ $user->username }}のアイコン"
             class="user-list-icon">
         </a>
@@ -55,7 +57,9 @@
           class="post-list-icon user-icon-link"
           aria-label="{{ $post->user->username }}のプロフィールを見る">
           <img
-            src="{{ asset('images/' . $post->user->icon_image) }}"
+            src="{{ Str::startsWith($post->user->icon_image, 'icons/')
+      ? asset('storage/' . $post->user->icon_image)
+      : asset('images/' . $post->user->icon_image) }}"
             alt="{{ $post->user->username }}のアイコン">
         </a>
 

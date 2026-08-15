@@ -41,7 +41,13 @@
     <div class="register-box">
         {{ Form::label('password_confirmation', 'パスワード確認') }}
         {{ Form::password('password_confirmation', ['class' => 'input']) }}
+
+        @error('password_confirmation')
+        <p class="validation-error">{{ $message }}</p>
+        @enderror
     </div>
+
+
 
     {{ Form::submit('新規登録', ['class' => 'register-submit']) }}
 

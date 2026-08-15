@@ -5,7 +5,7 @@
     {{-- アイコン --}}
     <div class="profile-edit-icon">
       <img
-        src="{{ asset('images/' . auth()->user()->icon_image) }}"
+        src="{{ asset('storage/' . auth()->user()->icon_image) }}"
         alt="{{ auth()->user()->username }}のアイコン">
     </div>
 
@@ -26,16 +26,18 @@
           ユーザー名
         </label>
 
-        <input
-          type="text"
-          id="username"
-          name="username"
-          class="profile-edit-input"
-          value="{{ auth()->user()->username }}">
+        <div class="profile-edit-input-group">
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="profile-edit-input"
+            value="{{ auth()->user()->username }}">
 
-        @error('username')
-        <p class="error-message">{{ $message }}</p>
-        @enderror
+          @error('username')
+          <p class="validation-error">{{ $message }}</p>
+          @enderror
+        </div>
       </div>
 
       {{-- メールアドレス --}}
@@ -46,16 +48,18 @@
           メールアドレス
         </label>
 
-        <input
-          type="email"
-          id="email"
-          name="email"
-          class="profile-edit-input"
-          value="{{ auth()->user()->email }}">
+        <div class="profile-edit-input-group">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="profile-edit-input"
+            value="{{ auth()->user()->email }}">
 
-        @error('email')
-        <p class="error-message">{{ $message }}</p>
-        @enderror
+          @error('email')
+          <p class="validation-error">{{ $message }}</p>
+          @enderror
+        </div>
       </div>
 
 
@@ -63,41 +67,45 @@
       {{-- パスワード --}}
       <div class="profile-edit-field">
         <label
-          for="password"
+          for="new_password"
           class="profile-edit-label">
           パスワード
         </label>
 
-        <input
-          type="password"
-          id="password"
-          name="password"
-          class="profile-edit-input"
-          placeholder="パスワード">
+        <div class="profile-edit-input-group">
+          <input
+            type="password"
+            id="new_password"
+            name="new_password"
+            class="profile-edit-input"
+            placeholder="パスワード">
 
-        @error('new_password')
-        <p class="error-message">{{ $message }}</p>
-        @enderror
+          @error('new_password')
+          <p class="validation-error">{{ $message }}</p>
+          @enderror
+        </div>
       </div>
 
       {{-- パスワード確認 --}}
       <div class="profile-edit-field">
         <label
-          for="password_confirmation"
+          for="new_password_confirmation"
           class="profile-edit-label">
           パスワード確認
         </label>
 
-        <input
-          type="password"
-          id="password_confirmation"
-          name="password_confirmation"
-          class="profile-edit-input"
-          placeholder="パスワード">
+        <div class="profile-edit-input-group">
+          <input
+            type="password"
+            id="new_password_confirmation"
+            name="new_password_confirmation"
+            class="profile-edit-input"
+            placeholder="パスワード">
 
-        @error('new_password_confirmation')
-        <p class="error-message">{{ $message }}</p>
-        @enderror
+          @error('new_password_confirmation')
+          <p class="validation-error">{{ $message }}</p>
+          @enderror
+        </div>
       </div>
 
       {{-- 自己紹介 --}}
@@ -108,10 +116,16 @@
           自己紹介
         </label>
 
-        <textarea
-          id="bio"
-          name="bio"
-          class="profile-edit-textarea">{{ auth()->user()->bio }}</textarea>
+        <div class="profile-edit-input-group">
+          <textarea
+            id="bio"
+            name="bio"
+            class="profile-edit-textarea">{{ auth()->user()->bio }}</textarea>
+
+          @error('bio')
+          <p class="validation-error">{{ $message }}</p>
+          @enderror
+        </div>
       </div>
 
       {{-- アイコン画像 --}}
@@ -122,16 +136,18 @@
           アイコン画像
         </label>
 
-        <input
-          type="file"
-          id="icon_image"
-          name="icon_image"
-          class="profile-edit-file"
-          accept="image/*">
+        <div class="profile-edit-input-group">
+          <input
+            type="file"
+            id="icon_image"
+            name="icon_image"
+            class="profile-edit-file"
+            accept="image/*">
 
-        @error('bio')
-        <p class="error-message">{{ $message }}</p>
-        @enderror
+          @error('icon_image')
+          <p class="validation-error">{{ $message }}</p>
+          @enderror
+        </div>
       </div>
 
       {{-- 更新ボタン --}}

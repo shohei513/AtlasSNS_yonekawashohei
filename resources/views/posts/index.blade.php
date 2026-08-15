@@ -7,7 +7,9 @@
     {{-- ログインユーザーのアイコン --}}
     <div class="post-form-icon">
       <img
-        src="{{ asset('images/' . auth()->user()->icon_image) }}"
+        src="{{ Str::startsWith(Auth::user()->icon_image, 'icons/')
+        ? asset('storage/' . Auth::user()->icon_image)
+        : asset('images/' . Auth::user()->icon_image) }}"
         alt="{{ auth()->user()->username }}のアイコン">
     </div>
 
@@ -53,7 +55,9 @@
       {{-- 投稿者のアイコン --}}
       <div class="post-list-icon">
         <img
-          src="{{ asset('images/' . $post->user->icon_image) }}"
+          src="{{ Str::startsWith($post->user->icon_image, 'icons/')
+        ? asset('storage/' . $post->user->icon_image)
+        : asset('images/' . $post->user->icon_image) }}"
           alt="{{ $post->user->username }}のアイコン">
         <!-- </a> -->
       </div>

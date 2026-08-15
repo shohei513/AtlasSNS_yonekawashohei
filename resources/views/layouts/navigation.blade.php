@@ -41,7 +41,9 @@
 
         {{-- ユーザーアイコン --}}
         <img
-            src="{{ asset('images/' . Auth::user()->icon_image) }}"
+            src="{{ Str::startsWith(Auth::user()->icon_image, 'icons/')
+        ? asset('storage/' . Auth::user()->icon_image)
+        : asset('images/' . Auth::user()->icon_image) }}"
             alt="ユーザーアイコン"
             class="user-icon">
 

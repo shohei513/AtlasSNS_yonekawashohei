@@ -4,7 +4,9 @@
 
     {{-- ユーザーアイコン --}}
     <img
-      src="{{ asset('images/' . $user->icon_image) }}"
+      src="{{ Str::startsWith($user->icon_image, 'icons/')
+      ? asset('storage/' . $user->icon_image)
+      : asset('images/' . $user->icon_image) }}"
       alt="{{ $user->username }}のアイコン"
       class="profile-header-icon">
 
@@ -76,7 +78,9 @@
         href="{{ route('users.show', $post->user->id) }}"
         class="post-list-icon">
         <img
-          src="{{ asset('images/' . $post->user->icon_image) }}"
+          src="{{ Str::startsWith($post->user->icon_image, 'icons/')
+      ? asset('storage/' . $post->user->icon_image)
+      : asset('images/' . $post->user->icon_image) }}"
           alt="{{ $post->user->username }}のアイコン">
       </a>
 
