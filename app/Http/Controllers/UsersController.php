@@ -92,7 +92,7 @@ class UsersController extends Controller
             })
 
             // ユーザーIDの昇順で取得
-            ->orderBy('id', 'asc')
+            ->orderBy('id', 'desc')
             ->get();
 
         $followingIds = auth()->user()
